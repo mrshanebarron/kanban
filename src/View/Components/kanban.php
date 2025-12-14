@@ -13,6 +13,6 @@ class kanban extends Component
 
     public function render()
     {
-        return view('ld-kanban::components.kanban');
+        return view('sb-kanban::components.kanban');
     }
 }

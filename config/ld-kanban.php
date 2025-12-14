@@ -1,5 +1,5 @@
 <?php
 
 return [
-    // Default settings for ld-kanban
+    // Default settings for sb-kanban
 ];

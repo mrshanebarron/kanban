@@ -11,14 +11,14 @@ class kanbanServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/ld-kanban.php', 'ld-kanban');
+        $this->mergeConfigFrom(__DIR__ . '/../config/sb-kanban.php', 'sb-kanban');
     }
 
     public function boot(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'ld-kanban');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-kanban');
 
-        Livewire::component('ld-kanban', kanban::class);
+        Livewire::component('sb-kanban', kanban::class);
 
         $this->loadViewComponentsAs('ld', [
             Bladekanban::class,
@@ -26,12 +26,12 @@ class kanbanServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/ld-kanban.php' => config_path('ld-kanban.php'),
-            ], 'ld-kanban-config');
+                __DIR__ . '/../config/sb-kanban.php' => config_path('sb-kanban.php'),
+            ], 'sb-kanban-config');
 
             $this->publishes([
-                __DIR__ . '/../resources/views' => resource_path('views/vendor/ld-kanban'),
-            ], 'ld-kanban-views');
+                __DIR__ . '/../resources/views' => resource_path('views/vendor/sb-kanban'),
+            ], 'sb-kanban-views');
         }
     }
 }

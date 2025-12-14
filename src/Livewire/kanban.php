@@ -24,6 +24,6 @@ class Kanban extends Component
 
     public function render()
     {
-        return view('ld-kanban::livewire.kanban');
+        return view('sb-kanban::livewire.kanban');
     }
 }

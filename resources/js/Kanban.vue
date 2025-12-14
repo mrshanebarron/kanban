@@ -34,7 +34,7 @@
 import { ref, computed } from 'vue';
 
 export default {
-  name: 'LdKanban',
+  name: 'SbKanban',
   props: {
     columns: { type: Array, default: () => [] },
     items: { type: Array, default: () => [] }
