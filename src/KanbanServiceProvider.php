@@ -1,13 +1,13 @@
 <?php
 
-namespace MrShaneBarron\kanban;
+namespace MrShaneBarron\Kanban;
 
 use Illuminate\Support\ServiceProvider;
-use MrShaneBarron\kanban\Livewire\kanban;
-use MrShaneBarron\kanban\View\Components\kanban as Bladekanban;
+use MrShaneBarron\Kanban\Livewire\Kanban;
+use MrShaneBarron\Kanban\View\Components\Kanban as BladeKanban;
 use Livewire\Livewire;
 
-class kanbanServiceProvider extends ServiceProvider
+class KanbanServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
@@ -18,10 +18,10 @@ class kanbanServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sb-kanban');
 
-        Livewire::component('sb-kanban', kanban::class);
+        Livewire::component('sb-kanban', Kanban::class);
 
         $this->loadViewComponentsAs('ld', [
-            Bladekanban::class,
+            BladeKanban::class,
         ]);
 
         if ($this->app->runningInConsole()) {

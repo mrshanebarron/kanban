@@ -1,10 +1,10 @@
 <?php
 
-namespace MrShaneBarron\kanban\View\Components;
+namespace MrShaneBarron\Kanban\View\Components;
 
 use Illuminate\View\Component;
 
-class kanban extends Component
+class Kanban extends Component
 {
     public function __construct()
     {
