@@ -20,35 +20,37 @@
             e.dataTransfer.dropEffect = 'move';
         }
     }"
-    class="flex gap-4 overflow-x-auto pb-4"
+    style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 16px;"
 >
-    @foreach($columns as $column)
+    @foreach($this->columns as $column)
         <div
             @dragover="handleDragOver($event)"
             @drop="handleDrop($event, '{{ $column['id'] }}')"
-            class="flex-shrink-0 w-72 bg-gray-100 rounded-lg p-4"
+            style="flex-shrink: 0; width: 288px; background: #f3f4f6; border-radius: 8px; padding: 16px;"
         >
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="font-semibold text-gray-700">{{ $column['title'] }}</h3>
-                <span class="px-2 py-1 text-xs font-medium bg-gray-200 rounded-full">
-                    {{ count(array_filter($items, fn($item) => $item['column'] === $column['id'])) }}
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                <h3 style="font-weight: 600; color: #374151; margin: 0;">{{ $column['title'] }}</h3>
+                <span style="padding: 4px 8px; font-size: 12px; font-weight: 500; background: #e5e7eb; border-radius: 9999px;">
+                    {{ count(array_filter($this->items, fn($item) => $item['column'] === $column['id'])) }}
                 </span>
             </div>
-            <div class="space-y-3 min-h-[200px]">
-                @foreach(array_filter($items, fn($item) => $item['column'] === $column['id']) as $item)
+            <div style="display: flex; flex-direction: column; gap: 12px; min-height: 200px;">
+                @foreach(array_filter($this->items, fn($item) => $item['column'] === $column['id']) as $item)
                     <div
                         draggable="true"
                         @dragstart="handleDragStart($event, '{{ $item['id'] }}', '{{ $column['id'] }}')"
-                        class="bg-white p-4 rounded-lg shadow-sm border cursor-move hover:shadow-md transition-shadow"
+                        style="background: white; padding: 16px; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; cursor: move; transition: box-shadow 0.15s;"
+                        onmouseover="this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'"
+                        onmouseout="this.style.boxShadow='0 1px 2px rgba(0,0,0,0.05)'"
                     >
-                        <h4 class="font-medium text-gray-900 mb-1">{{ $item['title'] }}</h4>
+                        <h4 style="font-weight: 500; color: #111827; margin: 0 0 4px 0;">{{ $item['title'] }}</h4>
                         @if(isset($item['description']))
-                            <p class="text-sm text-gray-500">{{ $item['description'] }}</p>
+                            <p style="font-size: 14px; color: #6b7280; margin: 0;">{{ $item['description'] }}</p>
                         @endif
                         @if(isset($item['tags']))
-                            <div class="mt-2 flex flex-wrap gap-1">
+                            <div style="margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px;">
                                 @foreach($item['tags'] as $tag)
-                                    <span class="px-2 py-0.5 text-xs bg-blue-100 text-blue-700 rounded">{{ $tag }}</span>
+                                    <span style="padding: 2px 8px; font-size: 12px; background: #dbeafe; color: #1d4ed8; border-radius: 4px;">{{ $tag }}</span>
                                 @endforeach
                             </div>
                         @endif
