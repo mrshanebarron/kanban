@@ -17,9 +17,15 @@ class Kanban extends Component
         $this->items = $items;
     }
 
-    public function moveItem(string $itemId, string $fromColumn, string $toColumn): void
+    public function moveItem(string $itemId, string $toColumn): void
     {
-        $this->dispatch('item-moved', itemId: $itemId, from: $fromColumn, to: $toColumn);
+        foreach ($this->items as $index => $item) {
+            if ($item['id'] === $itemId) {
+                $this->items[$index]['column'] = $toColumn;
+                break;
+            }
+        }
+        $this->dispatch('item-moved', itemId: $itemId, to: $toColumn);
     }
 
     public function render()

@@ -6,11 +6,12 @@
             this.draggedItem = itemId;
             this.draggedFrom = columnId;
             e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', itemId);
         },
         handleDrop(e, columnId) {
             e.preventDefault();
             if (this.draggedItem && this.draggedFrom !== columnId) {
-                $wire.moveItem(this.draggedItem, this.draggedFrom, columnId);
+                $wire.moveItem(this.draggedItem, columnId);
             }
             this.draggedItem = null;
             this.draggedFrom = null;
